@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: rgb(222, 253, 29);
+            background: linear-gradient(90deg, rgba(222, 253, 29, 1) 37%, rgba(72, 214, 255, 1) 68%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-family: sans-serif;
+        }
+
+        .container {
+            width: 400px;
+            min-height: 500px;
+            background: rgb(222, 253, 29);
+            background: linear-gradient(257deg, rgba(222, 253, 29, 1) 37%, rgba(72, 214, 255, 1) 68%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+        }
+
+        input {
+            position: absolute;
+            left: 5%;
+            top: 5%;
+            height: 60px;
+            padding: 5px;
+            box-sizing: border-box;
+            color: black;
+            font-size: larger;
+             background: rgb(222, 253, 29);
+            background: linear-gradient(357deg, rgba(222, 253, 29, 1) 37%, rgba(72, 214, 255, 1) 68%);
+            border-radius: 10px;
+
+        }
+
+        button {
+            position: absolute;
+            right: 5%;
+            top: 5%;
+            height: 60px;
+            width: 120px;
+            font-size: larger;
+            color: black;
+            background: rgb(222, 253, 29);
+            background: linear-gradient(357deg, rgba(222, 253, 29, 1) 37%, rgba(72, 214, 255, 1) 68%);
+            border-radius: 10px;
+        }
+
+        p {
+
+            color: white;
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+        #year {
+            width: 200px;
+            margin-top: 10px;
+            height: 35px;
+            border: 2px solid rgb(234, 255, 2);
+            text-align: center;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        #hour {
+            width: 200px;
+            margin-top: 10px;
+            height: 35px;
+            border: 2px solid rgb(11, 204, 253);
+            text-align: center;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        #day {
+            width: 200px;
+            height: 35px;
+            margin-top: 10px;
+            border: 2px solid rgb(234, 255, 2);
+            text-align: center;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        #week {
+            width: 200px;
+            height: 35px;
+            margin-top: 10px;
+            border: 2px solid rgb(11, 204, 253);
+            text-align: center;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        #month {
+            width: 200px;
+            margin-top: 10px;
+            height: 35px;
+            border: 2px solid rgb(234, 255, 2);
+            text-align: center;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        #min {
+            width: 200px;
+            height: 35px;
+            margin-top: 10px;
+            border: 2px solid rgb(11, 204, 253);
+            text-align: center;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        #sec {
+            width: 200px;
+            margin-top: 10px;
+            height: 35px;
+            border: 2px solid rgb(234, 255, 2);
+            text-align: center;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="datetime-local" id="dob">
+        <button id="submit">Calculate Age</button>
+        <p id="year"></p>
+        <p id="month"></p>
+        <p id="week"></p>
+        <p id="day"></p>
+        <p id="hour"></p>
+        <p id="min"></p>
+        <p id="sec"></p>
+    </div>
+
+
+
+
+
+    <script>
+        const btn = document.querySelector("#submit");
+        btn.addEventListener('click', function () {
+            const update = function () {
+                let dob = document.querySelector("#dob").value;
+                day = new Date(dob),
+                    time = day.getTime(),
+                    today = new Date(),
+                    timenow = today.getTime(),
+                    value = timenow - time,
+                    sec = Math.floor(value / 1000),
+                    min = Math.floor(value / (1000 * 60)),
+                    hour = Math.floor(value / (1000 * 60 * 60)),
+                    day = Math.floor(value / (1000 * 60 * 60 * 24)),
+                    week = Math.floor(value / (1000 * 60 * 60 * 24 * 7)),
+                    month = Math.floor(value / (1000 * 60 * 60 * 24 * 30.437)),
+                    year = Math.floor(value / (1000 * 60 * 60 * 24 * 365.25));
+
+
+                let insert = function (x, y) {
+                    document.querySelector(x).innerHTML = y;
+                }
+
+                insert("#year", year + " -Years");
+                insert("#month", month + " -Month");
+                insert("#week", week + " -Week");
+
+                insert("#day", day + " -Days");
+                insert("#hour", hour + " -Hours");
+
+                insert("#min", min + " -Mins");
+                insert("#sec", sec + " -Sec");
+
+
+            }
+            setInterval(update, 1000);
+        })
+    </script>
+</body>
+
+</html>
